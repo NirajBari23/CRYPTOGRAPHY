@@ -1,0 +1,14 @@
+# Use an OpenJDK base image
+FROM openjdk:11
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the Receiver.java file to the container
+COPY Receiver.java .
+
+# Compile the Receiver.java file
+RUN javac Receiver.java
+
+# Command to run the Receiver program
+CMD ["java", "Receiver"]

@@ -1,0 +1,14 @@
+# Use an OpenJDK base image
+FROM openjdk:11
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the Sender.java file to the container
+COPY Sender.java .
+
+# Compile the Sender.java file
+RUN javac Sender.java
+
+# Command to run the Sender program
+CMD ["java", "Sender"]

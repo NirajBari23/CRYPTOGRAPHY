@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  receiver:
+    build:
+      context: .
+      dockerfile: Dockerfile.receiver
+    ports:
+      - "12345:12345"
+    networks:
+      - mynetwork
+    environment:
+      - DIRECTION=R4  # Set the shift direction for decryption
+
+  sender:
+    build:
+      context: .
+      dockerfile: Dockerfile.sender
+    depends_on:
+      - receiver
+    networks:
+      - mynetwork
+    environment:
+      - WORD=WIPRO  # Set the word to encrypt and send
+      - DIRECTION=R4  # Set the shift direction for encryption
+
+networks:
+  mynetwork:
+    driver: bridge
